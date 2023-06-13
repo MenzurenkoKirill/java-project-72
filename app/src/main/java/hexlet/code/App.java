@@ -1,7 +1,7 @@
 package hexlet.code;
 
 import io.javalin.Javalin;
-import io.javalin.plugin.rendering.template.JavalinThymeleaf;
+import io.javalin.rendering.template.JavalinThymeleaf;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -11,7 +11,7 @@ import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 public final class App {
     private static int getPort() {
-        String port = System.getenv().getOrDefault("PORT", "5353");
+        String port = System.getenv().getOrDefault("PORT", "5432");
         return Integer.valueOf(port);
     }
 
@@ -43,10 +43,9 @@ public final class App {
     public static Javalin getApp() {
         Javalin app = Javalin.create(config -> {
             if (!isProduction()) {
-                config.enableDevLogging();
+                config.plugins.enableDevLogging();
             }
-            config.enableWebjars();
-            JavalinThymeleaf.configure(getTemplateEngine());
+            JavalinThymeleaf.init(getTemplateEngine());
         });
 
         addRoutes(app);
