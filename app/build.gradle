@@ -66,5 +66,18 @@ jacocoTestReport {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+task generateMigrations(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'hexlet.code.MigrationGenerator'
+}
+
+configurations {
+    runtime
+}
+
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean
