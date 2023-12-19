@@ -17,10 +17,6 @@ application {
 repositories {
     mavenCentral()
 }
-jacoco {
-    toolVersion = "0.8.9"
-    reportsDirectory.set(layout.buildDirectory.dir("customJacocoReportDir"))
-}
 
 dependencies {
     implementation("org.slf4j:slf4j-simple:2.0.9")
