@@ -1,0 +1,29 @@
+@import hexlet.code.Utils
+@import hexlet.code.dto.urls.UrlPage
+@import hexlet.code.NamedRoutes
+@param UrlPage page
+
+@template.layout.page(
+page = page,
+content = @`
+    <div class="container-lg mt-5">
+        <h1>Сайт: ${page.getUrl().getName()}</h1>
+        <table class="table table-bordered table-hover mt-3">
+            <tbody>
+            <tr>
+                <td>ID</td>
+                <td>${page.getUrl().getId()}</td>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>${page.getUrl().getName()}</td>
+            </tr>
+            <tr>
+                <td>Дата создания</td>
+                <td>${Utils.timeFormat(page.getUrl().getCreatedAt())}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+`
+)
