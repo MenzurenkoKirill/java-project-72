@@ -35,10 +35,10 @@ public class UrlRepository extends BaseRepository {
             var resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 var name = resultSet.getString("name");
-                var created_at = resultSet.getTimestamp("created_at");
+                var createdAt = resultSet.getTimestamp("created_at");
                 Url url = new Url(name);
                 url.setId(id);
-                url.setCreatedAt(created_at);
+                url.setCreatedAt(createdAt);
                 return Optional.of(url);
             }
             return Optional.empty();
@@ -53,10 +53,10 @@ public class UrlRepository extends BaseRepository {
             while (resultSet.next()) {
                 var id = resultSet.getLong("id");
                 var name = resultSet.getString("name");
-                var created_at = resultSet.getTimestamp("created_at");
+                var createdAt = resultSet.getTimestamp("created_at");
                 var url = new Url(name);
                 url.setId(id);
-                url.setCreatedAt(created_at);
+                url.setCreatedAt(createdAt);
                 result.add(url);
             }
             return result;
