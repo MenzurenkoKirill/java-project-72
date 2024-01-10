@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class AppTest {
+public final class AppTest {
     private static Javalin app;
     private static MockWebServer mockServer;
     private final String firstUrlCorrect = "https://ru.hexlet.io/programs/java";

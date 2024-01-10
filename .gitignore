@@ -11,3 +11,5 @@ bin
 .project*
 .classpath
 .idea/
+**/jte-classes/
+nano.save
