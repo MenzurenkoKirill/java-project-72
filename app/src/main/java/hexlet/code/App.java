@@ -7,15 +7,17 @@ import hexlet.code.repository.BaseRepository;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 @Slf4j
 public class App {
-    public static Javalin getApp() throws SQLException {
+    public static Javalin getApp() throws SQLException, IOException {
         var hikariConfig = new HikariConfig();
         hikariConfig.setJdbcUrl(Utils.getJdbcUrl());
         var dataSource = new HikariDataSource(hikariConfig);
-        var sql = Utils.getResourceFileAsString("schema.sql");
+        var sql = Utils.readResourceFile("schema.sql");
         log.info(sql);
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
@@ -33,7 +35,7 @@ public class App {
         app.post(NamedRoutes.urlChecksPath("{id}"), UrlChecksController::makeCheck);
         return app;
     }
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         var app = getApp();
         app.start(Utils.getPort());
     }

@@ -33,7 +33,7 @@ public final class AppTest {
     }
 
     @BeforeEach
-    public void beforeEach() throws SQLException {
+    public void beforeEach() throws SQLException, IOException {
         app = App.getApp();
     }
     @AfterAll

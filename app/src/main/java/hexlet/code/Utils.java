@@ -5,8 +5,10 @@ import gg.jte.TemplateEngine;
 import gg.jte.resolve.ResourceCodeResolver;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
@@ -26,18 +28,11 @@ public class Utils {
         TemplateEngine templateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
         return templateEngine;
     }
-    public static String getResourceFileAsString(String fileName) {
-        InputStream is = getResourceFileAsInputStream(fileName);
-        if (is != null) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            return reader.lines().collect(Collectors.joining(System.lineSeparator()));
-        } else {
-            throw new RuntimeException("Resource not found");
+    public static String readResourceFile(String fileName) throws IOException {
+        var inputStream = App.class.getClassLoader().getResourceAsStream(fileName);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            return reader.lines().collect(Collectors.joining("\n"));
         }
-    }
-    private static InputStream getResourceFileAsInputStream(String fileName) {
-        ClassLoader classLoader = App.class.getClassLoader();
-        return classLoader.getResourceAsStream(fileName);
     }
     public static String timeFormat(Timestamp createdAt) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
