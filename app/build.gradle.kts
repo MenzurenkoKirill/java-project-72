@@ -1,9 +1,9 @@
 plugins {
     application
+    jacoco
+    checkstyle
     id("java")
-    id ("checkstyle")
     id("io.freefair.lombok") version "8.3"
-    id("jacoco")
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 

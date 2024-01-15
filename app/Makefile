@@ -10,7 +10,7 @@ install:
 	./gradlew clean install
 
 run-dist:
-	./build/install/java-package/bin/java-package
+	./build/install/app/bin/app
 
 run:
 	./gradlew run
@@ -26,6 +26,9 @@ lint:
 
 update-deps:
 	./gradlew useLatestVersions
+
+check-deps:
+	./gradlew dependencyUpdates -Drevision=release
 
 
 build-run: build run
