@@ -38,7 +38,7 @@ public class UrlsController {
             String protocol = inputUrl.getProtocol();
             String authority = inputUrl.getAuthority();
             String port = inputUrl.getPort() == -1 ? "" : ":" + inputUrl.getPort();
-            var name = String.format("%s://%s%s", protocol, authority,port).toLowerCase();
+            var name = String.format("%s://%s%s", protocol, authority, port).toLowerCase();
             var url = new Url(name);
             var uniqueness = UrlRepository.getUrls().stream().noneMatch(entity ->
                     entity.getName().equals(name));
