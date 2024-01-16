@@ -1,5 +1,8 @@
 .DEFAULT_GOAL := build-run
 
+setup:
+	make -C app setup
+
 clean:
 	make -C app clean
 
@@ -10,7 +13,7 @@ install:
 	make -C app install
 
 run-dist:
-	make -C run-dist
+	make -C app run-dist
 
 run:
 	make -C app run
@@ -27,6 +30,8 @@ lint:
 update-deps:
 	make -C app update-deps
 
+check-deps:
+	make -C app check-deps
 
 build-run: build run
 
