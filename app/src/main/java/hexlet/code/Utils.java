@@ -19,7 +19,7 @@ public class Utils {
     }
     public static String getJdbcUrl() {
         return System.getenv()
-                .getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project;DB_CLOSE_DELAY=-1;");
+                .getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
     }
     public static TemplateEngine createTemplateEngine() {
         ClassLoader classLoader = App.class.getClassLoader();
