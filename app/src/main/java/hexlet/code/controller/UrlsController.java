@@ -38,18 +38,17 @@ public class UrlsController {
             String protocol = inputUrl.getProtocol();
             String authority = inputUrl.getAuthority();
             String port = inputUrl.getPort() == -1 ? "" : ":" + inputUrl.getPort();
-            var name = String.format("%s://%s%s", protocol, authority, port).toLowerCase();
-            var url = new Url(name);
-            var uniqueness = UrlRepository.getUrls().stream().noneMatch(entity ->
-                    entity.getName().equals(name));
-            if (uniqueness) {
-                UrlRepository.save(url);
-                ctx.sessionAttribute("flash", "Страница усрешно добавлена");
-                ctx.sessionAttribute("color", "success");
+            var normalizedUrl = String.format("%s://%s%s", protocol, authority, port).toLowerCase();
+            var url = UrlRepository.findByName(normalizedUrl).orElse(null);
+            if (url != null) {
+                ctx.sessionAttribute("flash", "Страница уже существует");
+                ctx.sessionAttribute("flash-type", "info");
                 ctx.redirect(NamedRoutes.urlsPath());
             } else {
-                ctx.sessionAttribute("flash", "Страница не существует");
-                ctx.sessionAttribute("color", "info");
+                var newUrl = new Url(normalizedUrl);
+                UrlRepository.save(newUrl);
+                ctx.sessionAttribute("flash", "Страница усрешно добавлена");
+                ctx.sessionAttribute("color", "success");
                 ctx.redirect(NamedRoutes.urlsPath());
             }
         }
