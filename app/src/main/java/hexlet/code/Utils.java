@@ -5,6 +5,7 @@ import gg.jte.TemplateEngine;
 import gg.jte.resolve.ResourceCodeResolver;
 
 import java.io.BufferedReader;
+import com.zaxxer.hikari.HikariConfig;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -13,13 +14,28 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 public class Utils {
+    private static final String PORT = "8080";
+    private static final String JDBC_URL = "jdbc:h2:mem:hexlet_project;DB_CLOSE_DELAY=-1;";
     public static int getPort() {
-        String port = System.getenv().getOrDefault("PORT", "7070");
+        String port = System.getenv().getOrDefault("PORT", PORT);
         return Integer.valueOf(port);
     }
     public static String getJdbcUrl() {
         return System.getenv()
-                .getOrDefault("JDBC_DATABASE_URL", "jdbc:h2:mem:project");
+                .getOrDefault("JDBC_DATABASE_URL", JDBC_URL);
+    }
+
+    private static boolean isProd() {
+        return System.getenv().getOrDefault("APP_ENV", "dev").equals("production");
+    }
+    public static void setDataBase(HikariConfig hikariConfig) {
+        hikariConfig.setJdbcUrl(getJdbcUrl());
+        if (isProd()) {
+            var userName = System.getenv("JDBS_DATABASE_USERNAME");
+            var password = System.getenv("JDBS_DATABASE_PASSWORD");
+            hikariConfig.setUsername(userName);
+            hikariConfig.setPassword(password);
+        }
     }
     public static TemplateEngine createTemplateEngine() {
         ClassLoader classLoader = App.class.getClassLoader();
