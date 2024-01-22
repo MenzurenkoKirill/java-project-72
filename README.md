@@ -1,13 +1,13 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/MenzurenkoKirill/java-project-72/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MenzurenkoKirill/java-project-72/actions)
-[![Maintainability]]<a href="https://codeclimate.com/github/MenzurenkoKirill/java-project-72/maintainability"><img src="https://api.codeclimate.com/v1/badges/929d7d43946a861826b5/maintainability" /></a>
-[![Test Coverage]]<a href="https://codeclimate.com/github/MenzurenkoKirill/java-project-72/test_coverage"><img src="https://api.codeclimate.com/v1/badges/929d7d43946a861826b5/test_coverage" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/929d7d43946a861826b5/maintainability)](https://codeclimate.com/github/MenzurenkoKirill/java-project-72/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/929d7d43946a861826b5/test_coverage)](https://codeclimate.com/github/MenzurenkoKirill/java-project-72/test_coverage)
 
 # Анализатор страниц
 
 <a href="https://java-project-72-brcs.onrender.com">Page Analyzer</a> – сайт, который анализирует указанные страницы на SEO пригодность.
 
-# Как проверить сайт на SEO пригодность
+## Как проверить сайт на SEO пригодность
 
 1. В пустом поле главной страницы необходимо указать название сайта, который Вы хотите проверить, и нажать кнопку "Проверить".
 
