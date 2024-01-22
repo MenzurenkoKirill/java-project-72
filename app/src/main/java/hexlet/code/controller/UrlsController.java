@@ -35,10 +35,15 @@ public class UrlsController {
             ctx.redirect(NamedRoutes.mainPath());
         }
         if (inputUrl != null) {
-            String protocol = inputUrl.getProtocol();
-            String authority = inputUrl.getAuthority();
-            String port = inputUrl.getPort() == -1 ? "" : ":" + inputUrl.getPort();
-            var normalizedUrl = String.format("%s://%s%s", protocol, authority, port).toLowerCase();
+            String normalizedUrl = String
+                    .format(
+                            "%s://%s%s",
+                            inputUrl.getProtocol(),
+                            inputUrl.getHost(),
+                            inputUrl.getPort() == -1 ? "" : ":" + inputUrl.getPort()
+                    )
+                    .toLowerCase();
+
             var url = UrlRepository.findByName(normalizedUrl).orElse(null);
             if (url != null) {
                 ctx.sessionAttribute("flash", "Страница уже существует");
