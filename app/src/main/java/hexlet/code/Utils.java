@@ -5,7 +5,6 @@ import gg.jte.TemplateEngine;
 import gg.jte.resolve.ResourceCodeResolver;
 
 import java.io.BufferedReader;
-import com.zaxxer.hikari.HikariConfig;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
