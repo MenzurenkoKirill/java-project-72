@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class App {
     public static Javalin getApp() throws SQLException, IOException {
         var hikariConfig = new HikariConfig();
-        Utils.setDataBase(hikariConfig);
+        hikariConfig.setJdbcUrl(Utils.getJdbcUrl());
         var dataSource = new HikariDataSource(hikariConfig);
         var sql = Utils.readResourceFile("schema.sql");
         log.info(sql);

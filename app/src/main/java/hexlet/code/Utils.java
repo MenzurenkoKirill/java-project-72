@@ -24,19 +24,6 @@ public class Utils {
         return System.getenv()
                 .getOrDefault("JDBC_DATABASE_URL", JDBC_URL);
     }
-
-    private static boolean isProd() {
-        return System.getenv().getOrDefault("APP_ENV", "dev").equals("production");
-    }
-    public static void setDataBase(HikariConfig hikariConfig) {
-        hikariConfig.setJdbcUrl(getJdbcUrl());
-        if (isProd()) {
-            var userName = System.getenv("JDBS_DATABASE_USERNAME");
-            var password = System.getenv("JDBS_DATABASE_PASSWORD");
-            hikariConfig.setUsername(userName);
-            hikariConfig.setPassword(password);
-        }
-    }
     public static TemplateEngine createTemplateEngine() {
         ClassLoader classLoader = App.class.getClassLoader();
         ResourceCodeResolver codeResolver = new ResourceCodeResolver("templates", classLoader);
